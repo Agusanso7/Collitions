@@ -1,7 +1,7 @@
-let number_of_circles = 40;
+let number_of_circles = 50;
 let radius = 50;
 let circles = [];
-let velocity = 0.001;
+let velocity = 0.0005;
 let collition_distance = radius/2;
 
 function getCircle(){
@@ -52,13 +52,10 @@ function setup() {
     for(let i=0;i<number_of_circles;i++){
         circles.push(getCircle()); 
         while(circleIsColliding(i, circles)) circles[i] = getCircle();
-    }
-        
+    }   
 }
 
 function draw() {
-    //mouseIsPressed ? fill(0) : fill(255);
-    //elipse(mouseX, mouseY, 80, 80);
     for(let i=0;i<circles.length;i++){
         fill(circles[i].color);
         circle(circles[i].x, circles[i].y, radius * circles[i].color/100);
