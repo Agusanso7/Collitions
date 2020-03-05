@@ -1,4 +1,4 @@
-let number_of_circles = 50;
+let number_of_circles = 60;
 let radius = 50;
 let circles = [];
 let velocity = 0.0005;
@@ -32,6 +32,9 @@ function moveCirclesToNextFrame(all_circles){
             all_circles[i].x += all_circles[i].dirX * velocity * (all_circles[i].color+1);
             all_circles[i].dirY *= -1;
             all_circles[i].y += all_circles[i].dirY * velocity * (all_circles[i].color+1);
+            // TODO: improve collitions
+            all_circles[i].x += Math.floor(Math.random() * 5) -2; // [-1,1]
+            all_circles[i].y += Math.floor(Math.random() * 5) -2;
             continue;
         }
 
@@ -56,9 +59,10 @@ function setup() {
 }
 
 function draw() {
+    background(220);
     for(let i=0;i<circles.length;i++){
-        fill(circles[i].color);
-        circle(circles[i].x, circles[i].y, radius * circles[i].color/100);
         moveCirclesToNextFrame(circles);
+        fill(circles[i].color);
+        circle(circles[i].x, circles[i].y, radius * circles[i].color/100);  
     }
 }
